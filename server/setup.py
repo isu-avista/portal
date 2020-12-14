@@ -11,7 +11,7 @@ setuptools.setup(
     description="",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/isu-avista/data",
+    url="https://github.com/isu-avista/portal",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -21,7 +21,12 @@ pip3 install git+ssh://git@github.com/isu-avista/iot.git
 
 ## Usage
 
-TBD...
+### Database Setup
+
+```bash
+flask db init
+flask db upgrade
+```
 
 ## Credits
 
