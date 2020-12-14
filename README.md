@@ -1,8 +1,8 @@
-# Avista-IoT
+# Avista-Portal
 
 ## Description
 
-This is the IoT module providing the operations for data collection with the RPi devices.
+This is the Portal module providing the data aggregation
 
 ## Table of Contents
 
