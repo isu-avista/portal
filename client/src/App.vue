@@ -10,13 +10,22 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item to="/" v-if="currentUser">
+              <b-icon icon="house-fill"/>&nbsp;&nbsp;Overview
+            </b-nav-item>
+            <b-nav-item to="/monitor" v-if="currentUser">
               <b-icon icon="display-fill"/>&nbsp;&nbsp;Monitor
             </b-nav-item>
+            <b-nav-item to="/issues" v-if="currentUser">
+              <b-icon icon="bug-fill"/>&nbsp;&nbsp;Issues
+            </b-nav-item>
+            <b-nav-item to="/action" v-if="currentUser">
+              <b-icon icon="gear-wide"/>&nbsp;&nbsp;Action
+            </b-nav-item>
             <b-nav-item to="/config" v-if="currentUser && administrator">
-              <b-icon icon="gear-fill"/>&nbsp;&nbsp;Configuration
+              <b-icon icon="list-check"/>&nbsp;&nbsp;Configuration
             </b-nav-item>
             <b-nav-item to="/about">
-              <b-icon icon="info-circle"/> About
+              <b-icon icon="info-circle"/>&nbsp;&nbsp;About
             </b-nav-item>
           </b-navbar-nav>
 
@@ -37,10 +46,10 @@
               </template>
 
               <b-dropdown-item to="/profile">
-                <b-icon icon="person-lines-fill"/> Profile
+                <b-icon icon="person-lines-fill"/>&nbsp;&nbsp;Profile
               </b-dropdown-item>
               <b-dropdown-item href="#" @click="signout">
-                <b-icon icon="door-closed"/> Sign Out
+                <b-icon icon="door-closed"/>&nbsp;&nbsp;Sign Out
               </b-dropdown-item>
             </b-nav-item-dropdown>
 
@@ -60,7 +69,7 @@
     <footer class="footer">
       <div class="fluid-container">
         <p class="text-right"><img alt="Vue logo" src="./assets/bengal.png" height="100px"></p>
-        <span class="text-muted">Copyright &copy; 2020 Idaho State University
+        <span class="text-muted">Copyright &copy; 2020-2021 Idaho State University
          Empirical Software Engineering Laboratory</span>
       </div>
     </footer>

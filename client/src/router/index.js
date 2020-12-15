@@ -1,11 +1,16 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Router from 'vue-router';
 import Home from '@/views/Home.vue';
+import About from '@/views/About.vue';
 import Login from '@/views/Login.vue';
 import Profile from '@/views/Profile.vue';
+import Config from '@/views/Config.vue';
+import Actions from '@/views/Actions.vue';
+import Issues from '@/views/Issues.vue';
+import Monitor from '@/views/Monitor.vue';
 import isValidJwt from '@/utils';
 
-Vue.use(VueRouter);
+Vue.use(Router);
 
 const routes = [
   {
@@ -16,10 +21,11 @@ const routes = [
   {
     path: '/about',
     name: 'About',
+    component: About,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
     path: '/login',
@@ -31,9 +37,29 @@ const routes = [
     name: 'Profile',
     component: Profile,
   },
+  {
+    path: '/monitor',
+    name: 'Monitor',
+    component: Monitor,
+  },
+  {
+    path: '/config',
+    name: 'Config',
+    component: Config,
+  },
+  {
+    path: '/issues',
+    name: 'Issues',
+    component: Issues,
+  },
+  {
+    path: '/actions',
+    name: 'Actions',
+    component: Actions,
+  },
 ];
 
-const router = new VueRouter({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
