@@ -1,6 +1,6 @@
 import os
 import unittest
-from avista_portal.server import PortalServer
+from tests.mock_service import MockService
 from avista_data import db
 from pathlib import Path
 from dotenv import load_dotenv
@@ -10,7 +10,7 @@ class BaseApiTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        basedir = Path(__file__).parent.absolute() / ".." / "test-data"
+        basedir = Path(__file__).parent.absolute() / ".." / ".." / "test-data"
         cls.write_env_file(basedir, "test.env")
         load_dotenv(os.path.join(basedir, 'test.env'))
 
@@ -21,8 +21,8 @@ class BaseApiTest(unittest.TestCase):
             f.write("LOG_PATH=" + (basedir / 'logs').__str__())
 
     def setUp(self):
-        self.server = PortalServer.get_instance()
-        self.server.init()
+        self.server = MockService.get_instance()
+        self.server.initialize()
         self.server.start()
         self.client = self.server._app.test_client()
 
