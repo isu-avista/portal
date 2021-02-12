@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 * Added the basic data route to allow for data to enter the portal from the IoT devices
+* Added the docker-compose file to run the system
+* Added systemd service file
+* Added install script
 
 ### Changed
 * Updated existing tests
 * Modified the existing server to correspond to changes in base-server
+* Modified the dockerfile to build the docker image
+* Updated README to reflect new instructions for installing and running
 
 ### Deleted
 

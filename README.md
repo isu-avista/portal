@@ -16,7 +16,8 @@ This is the Portal module providing the data aggregation
 To install this use the following command.
 
 ```
-pip3 install git+ssh://git@github.com/isu-avista/portal.git
+curl https://raw.githubusercontent.com/isu-avista/portal/master/scripts/install.sh
+sudo bash ./install.sh
 ```
 
 ## Usage
@@ -26,6 +27,14 @@ pip3 install git+ssh://git@github.com/isu-avista/portal.git
 ```bash
 flask db init
 flask db upgrade
+```
+
+### Executing the Production Environment
+
+In the project root directory execute the following command
+
+```
+docker-compose up -f docker-compose.yml
 ```
 
 ### Executing the Development Environment
@@ -128,7 +137,7 @@ This module was contributed by:
 
 ## License
 
-Copyright (c) 2020 Idaho State University Empirical Software Engineering Laboratory
+Copyright (c) 2020, 2021 Idaho State University Empirical Software Engineering Laboratory
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

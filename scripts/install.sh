@@ -13,6 +13,12 @@ command_exists() {
 	return 0
 }
 
+# Install python3 if not already installed
+command_exists "python3"
+if [[ #? -ne 0 ]]; then
+	sudo apt-get install python3 -y
+fi
+
 # Install docker if not already installed
 command_exists "docker"
 if [[ $? -ne 0 ]]; then
@@ -39,11 +45,31 @@ echo "GRANT ALL PRIVILEGES ON DATABASE avistadb TO avista;" >> setup.sql
 
 sudo -u postgres psql -f setup.sql
 
+# Create user
+sudo adduser avista --system avista --no-create-home
+
+# Create install directory
+sudo mkdir /opt/avista
+
+# Set directory permissions
+sudo chmod 777 /opt/avista
+sudo chown avista /opt/avista
+sudo chgrp avista /opt/avista
+
+cd /opt/avista
+
 # Collect the appropriate scripts and install them where they belong
 # 1. need the docker compose script
-# 2. need the startup script
-# 3. need the run script
+curl https://raw.githubusercontent.com/isu-avista/portal/master/docker-compose.yml
 
-# Create the symbolic links
+# 2. need the systemd service
 
-# Clean up installation files
+curl https://raw.githubusercontent.com/isu-avista/portal/master/scripts/avista.service
+
+# 3. Install, enable, and start the  systemd service
+
+sudo mv avista.service /etc/systemd/system/avista.service
+
+sudo systemctl enable avista
+sudo systemctl start avista
+

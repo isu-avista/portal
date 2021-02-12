@@ -1,0 +1,19 @@
+[Unit]
+Description=ISU-Avista portal
+Requires=docker.service
+After=network.target docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker-compose -f /opt/avista/avista.yml up -d --remove-orphans
+ExecStop=/usr/bin/docker-compose -f /opt/avista/avista.yml down -v
+Restart=on-failure
+User=avistausr
+WorkingDirector=/opt/avista
+RuntimeDirector=/opt/avista
+RuntimeDirectoryMode=0755
+
+[Install]
+WantedBy=multi-user.target
+
+
