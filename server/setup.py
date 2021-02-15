@@ -1,11 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("../README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="avista-portal",
-    version="0.1.0",
+    version="0.1.1",
     author="Isaac Griffith",
     author_email="grifisaa@isu.edu",
     description="",

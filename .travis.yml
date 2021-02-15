@@ -6,15 +6,24 @@ python:
   - 3.6
   - 3.7
   - 3.8
-services: []
+services: 
+  - docker
+
 env: []
+
 install:
-  - pip install -q -r requirements.txt
-  - pip install -q -e .
-  - pip install prospector[with_bandit]
-  - pip install coverage
+  - "pip install -q -r requirements.txt"
+  - "pip install -q -e ."
+  - "pip install prospector[with_bandit]"
+  - "pip install coverage"
 script:
-  - python setup.py test
-  - prospector --tool pylint --tool pep8 --tool dodgy --tool pydocstyle --tool bandit
-  - coverage run -m unittest discover
-  - coverage report
+  - "python setup.py test"
+  - "prospector --tool pylint --tool pep8 --tool dodgy --tool pydocstyle --tool bandit"
+  - "coverage run -m unittest discover"
+  - "coverage report"
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master

@@ -1,1 +1,1 @@
-from tests.api import test_auth, test_user
+from tests.api import test_data_transporter

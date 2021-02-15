@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+
+  backend:
+    image: isuese/avista-portal-server:latest
+    command: python3 app.py
+    network_mode: host
+    privileged: True

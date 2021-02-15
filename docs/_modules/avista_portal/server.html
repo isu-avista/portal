@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>avista_portal.server &#8212; avista-portal 0.1.0 documentation</title>
+    <title>avista_portal.server &#8212; avista-portal 0.1.1 documentation</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     
@@ -27,7 +27,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">avista-portal 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">avista-portal 0.1.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">avista_portal.server</a></li> 
       </ul>
@@ -40,6 +40,7 @@
             
   <h1>Source code for avista_portal.server</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">avista_base.service</span> <span class="kn">import</span> <span class="n">Service</span>
+<span class="kn">import</span> <span class="nn">avista_portal.api</span> <span class="k">as</span> <span class="nn">api</span>
 
 
 <div class="viewcode-block" id="PortalServer"><a class="viewcode-back" href="../../index.html#avista_portal.server.PortalServer">[docs]</a><span class="k">class</span> <span class="nc">PortalServer</span><span class="p">(</span><span class="n">Service</span><span class="p">):</span>
@@ -56,9 +57,11 @@
 
     <span class="k">def</span> <span class="nf">_setup_endpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_setup_endpoints</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">api_bp</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PortalServer.start"><a class="viewcode-back" href="../../index.html#avista_portal.server.PortalServer.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
 
     <span class="k">def</span> <span class="nf">check_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
@@ -93,13 +96,13 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">avista-portal 0.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">avista-portal 0.1.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">avista_portal.server</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Isaac Griffith, Andrew Christiansen.
+        &#169; Copyright 2020-2021, Isaac Griffith, Andrew Christiansen.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
     </div>
   </body>

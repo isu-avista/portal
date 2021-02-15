@@ -1,2 +1,2 @@
-from tests import test_server
+from tests import mock_service
 from tests import api

@@ -1,4 +1,5 @@
 from avista_base.service import Service
+import avista_portal.api as api
 
 
 class PortalServer(Service):
@@ -15,9 +16,11 @@ class PortalServer(Service):
 
     def _setup_endpoints(self):
         super()._setup_endpoints()
+        self._app.register_blueprint(api.api_bp)
 
     def start(self):
         super().start()
+
 
     def check_status(self):
         pass
