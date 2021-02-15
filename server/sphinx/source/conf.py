@@ -19,11 +19,11 @@ sys.setrecursionlimit(1500)
 # -- Project information -----------------------------------------------------
 
 project = 'avista-portal'
-copyright = '2020, Isaac Griffith, Andrew Christiansen'
+copyright = '2020-2021, Isaac Griffith, Andrew Christiansen'
 author = 'Isaac Griffith, Andrew Christiansen'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = '0.1.1'
 
 
 # -- General configuration ---------------------------------------------------

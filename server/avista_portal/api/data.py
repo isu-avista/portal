@@ -53,8 +53,8 @@ def add_data():
         post_data = request.get_json()
         print(post_data)
         process_data_async(post_data)
-        return jsonify({'status': 'failure')
-    return jsonify({'status': 'failure')
+        return jsonify({'status': 'success'})
+    return jsonify({'status': 'failure'})
     # Now we need a processor which will process the data and add it to the database
     # preferably we will do this in a separate process, so we are not holding up the route
     # Thread(target=process_data_async, args=(post_data)).start()
