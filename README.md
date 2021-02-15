@@ -13,12 +13,72 @@ This is the Portal module providing the data aggregation
 
 ## Installation
 
-To install this use the following command.
+1. Retrieve the install script:
 
-```
-curl https://raw.githubusercontent.com/isu-avista/portal/master/scripts/install.sh
-sudo bash ./install.sh
-```
+   ```shell
+   curl -fsSL https://raw.githubusercontent.com/isu-avista/portal/master/scripts/install.sh -o install.sh
+   ```
+ 
+2. Make the script executable
+
+   ```shell
+   chmod +x install.sh
+   ```
+   
+3. Execute the install script as sudo
+
+   ```shell
+   sudo ./install.sh -u avista -d avistadb -p avistapw
+   ```
+   
+   The options are based on the default setup that comes with the image
+   - u : sets the username to be used in the database
+   - p : sets the password for the database
+   - d : sets the database name
+
+This process will create the folder `/opt/avista` where the docker-compose file will reside.
+It will setup a service based on this file that will be used to start the system on startup.
+Finally, it will setup the database using the command line arguments.
+   
+## Building and executing with Docker
+
+1. Build docker images (this part still requires an ssh key authorized with github)
+
+   1. Login to docker to be able to push the docker images to dockerhub
+   
+      ```shell
+      docker login --username <your-username> --password <your-password>
+      ```
+   
+   2. Build the server image, from the project root directory
+
+      ```shell
+      cd server
+      docker build \
+             --build-arg dbtype=postgres \
+             --build-arg dbname=avistadb \
+             --build-arg dbuser=avista \
+             --build-arg dbpass=avistapw \
+             --build-arg dbip=localhost \
+             --build-arg dbport=5432 \
+             --build-arg hostname=localhost \
+             --build-arg port=5000 \
+             -t isuese/avista-portal-server:latest .
+      docker push isuese/avista-portal-server:latest
+      ```
+      
+   3. Build the client image, from the project root directory:
+   
+      ```shell
+      cd client
+      docker build -t isuese/avista-portal-client:latest .
+      docker push isuese/avista-portal-client:latest
+      ```
+
+2. If the build was error free, the images can now be spun up in containers. From the project root directory
+   ```shell
+   sudo docker-compose up
+   ```
 
 ## Usage
 
@@ -33,7 +93,7 @@ flask db upgrade
 
 In the project root directory execute the following command
 
-```
+```shell
 docker-compose up -f docker-compose.yml
 ```
 
@@ -43,7 +103,7 @@ docker-compose up -f docker-compose.yml
 
 From the project root directory:
 
-```bash
+```shell
 source env/bin/activate
 cd server
 python3 app.py
@@ -53,7 +113,7 @@ python3 app.py
 
 From the project root directory:
 
-```bash
+```shell
 cd client
 npm run serve
 ```
@@ -125,7 +185,7 @@ There are three configuration files:
   
 #### Generating Secret Keys
 
-```bash
+```shell
 python3 -c "import uuid; print(uuid.uuid4().hex)"
 ```
 

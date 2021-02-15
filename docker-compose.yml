@@ -3,8 +3,7 @@ version: "3.9"
 services:
 
   backend:
-    image: isuese/avista-portal:backend-latest
+    image: isuese/avista-portal-server:latest
     command: python3 app.py
-    ports:
-      - "5000:5000"
+    network_mode: host
     privileged: True
