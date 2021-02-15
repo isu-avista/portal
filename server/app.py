@@ -18,7 +18,7 @@ if __name__ == '__main__':
     service.start()
     app = service.get_app()
     options = dict(
-        bind=service.get_hostname() + ":" + service.get_port(),
+        bind=f'{service.get_hostname()}:{service.get_port()}',
         workers=1
     )
     AvistaApp(app, options).run()
