@@ -1,6 +1,6 @@
-git+ssh://git@github.com/isu-avista/data.git
-git+ssh://git@github.com/isu-avista/base-server.git
-git+ssh://git@github.com/isu-avista/sensors.git
+git+git://github.com/isu-avista/data.git
+git+git://github.com/isu-avista/base-server.git
+git+git://github.com/isu-avista/sensors.git
 pyyaml==5.3.1
 flask==1.1.2
 flask_cors==3.0.9

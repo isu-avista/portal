@@ -1,39 +1,38 @@
----
-sysdata:
-  -
-    item: System Identifier
-    value: uuid.uuid4().hex
-    type: text
-  -
-    item: Equipment Monitored
-    value: Dryer 01
-    type: text
-  -
-    item: Location
-    value: ERC Rm 202
-    type: text
-  -
-    item: Data Collection Periodicity (ms)
-    value: 5000
-    type: number
-  -
-    item: Server Port
-    value: 5000
-    type: number
 dbdata:
-  -
-    item: DBMS IP Address
-    value: '127.0.0.1'
-    type: text
-  -
-    item: DBMS Port
-    value: 3306
-    type: number
-  -
-    item: DBMS Username
-    value: service
-    type: text
-  -
-    item: DBMS Password
-    value: '*******'
-    type: password
+- item: DBMS Type
+  type: text
+  value: postgres
+- item: DBMS DB Name
+  type: text
+  value: avistadb
+- item: DBMS IP Address
+  type: text
+  value: localhost
+- item: DBMS Port
+  type: text
+  value: '5432'
+- item: DBMS Username
+  type: text
+  value: avista
+- item: DBMS Password
+  type: password
+  value: avistapw
+service:
+  host: localhost
+  port: '5000'
+sysdata:
+- item: System Identifier
+  type: text
+  value: df0bcb642bd44c37a06882cd13179cb0
+- item: Equipment Monitored
+  type: text
+  value: ''
+- item: Location
+  type: text
+  value: ''
+- item: Data Collection Periodicity (ms)
+  type: number
+  value: 5000
+- item: Server Port
+  type: number
+  value: 5000

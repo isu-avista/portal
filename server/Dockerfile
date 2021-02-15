@@ -1,5 +1,5 @@
 # get base image
-FROM amd64/ubuntu
+FROM ubuntu:latest
 
 # Arguments
 ARG dbtype
@@ -14,10 +14,11 @@ ARG hostport
 # create working direcotry
 WORKDIR ./
 
-RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get update -y
 RUN apt-get install -y apt-utils
-RUN apt-get install -y python3 python3-pip python-dev gunicorn3 python3-setuptools
+RUN DEBIAN_FRONTEND="noninteractive" TZ="America/Denver" apt-get -y install tzdata
 RUN apt-get install -y git ssh libatlas-base-dev libpq-dev
+RUN apt-get install -y python3 python3-pip python3-dev python3-wheel gunicorn python3-setuptools python3-venv
 
 # copy requirements
 COPY ./requirements.txt ./requirements.txt
