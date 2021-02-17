@@ -13,12 +13,12 @@ before_install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - python --version
   - pip install -U pip
+  - cd server
   - pip install -q -r requirements.txt
   - pip install -q -e .
   - pip install prospector[with_bandit]
   - pip install coverage
 install:
-  - cd server
   - pip install ".[test]" . # install package + test dependencies
 script:
   - pytest --cov=avista_iot --cov-fail-under=90
