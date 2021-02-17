@@ -29,6 +29,11 @@ if [[ $? -ne 0 ]]; then
     apt-get install python3 -y
 fi
 
+command_exists "curl"
+if [[ $? -ne 0 ]]; then
+  apt-get install curl -y
+fi
+
 # Install docker if not already installed
 command_exists "docker"
 if [[ $? -ne 0 ]]; then
@@ -49,19 +54,18 @@ if [[ $? -ne 0 ]]; then
 fi
 
 # Generate and execute the database setup script
-echo CREATE DATABASE $db; > setup.sql
-echo CREATE USER $user WITH ENCRYPTED PASSWORD '$pass'; >> setup.sql
-echo GRANT ALL PRIVILEGES ON DATABASE $db TO $user; >> setup.sql
+echo "CREATE DATABASE $db;" > setup.sql
+echo "CREATE USER $user WITH ENCRYPTED PASSWORD '$pass';" >> setup.sql
+echo "GRANT ALL PRIVILEGES ON DATABASE $db TO $user;" >> setup.sql
 
 sudo -u postgres psql -f setup.sql
 
 # Create user
-adduser --system --no-create-home avisa
+adduser --no-create-home avisa
 groupadd avista
 groupadd docker
 usermod -aG docker avista
 usermod -aG avista avista
-usermod -aG docker pi
 systemctl restart docker
 
 # Create install directory
