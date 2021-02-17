@@ -11,7 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-## [v0.1.2](https://github.com/isu-avista/portal/releases/tag/v0.1.1) - 2021-02-16
+## [v0.1.3](https://github.com/isu-avista/portal/releases/tag/v0.1.3) - 2021-02-16
+### Added
+
+### Changed
+* Fixed the travis ci build
+
+### Removed
+
+## [v0.1.2](https://github.com/isu-avista/portal/releases/tag/v0.1.2) - 2021-02-16
 ### Added
 * docker_pus script to automate building docker images and pushing them to dockerhub
 
