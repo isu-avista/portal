@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [v0.1.2](https://github.com/isu-avista/portal/releases/tag/v0.1.1) - 2021-02-16
+### Added
+* docker_pus script to automate building docker images and pushing them to dockerhub
+
+### Changed
+* Updated the travisci file to fixed automated build and deploy
+* Updated the install script to ensure all needed tools exists
+
+### Removed
+
 ## [v0.1.1](https://github.com/isu-avista/portal/releases/tag/v0.1.1) - 2021-02-15
 ### Added
 * Added the basic data route to allow for data to enter the portal from the IoT devices

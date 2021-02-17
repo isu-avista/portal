@@ -61,12 +61,11 @@ echo "GRANT ALL PRIVILEGES ON DATABASE $db TO $user;" >> setup.sql
 sudo -u postgres psql -f setup.sql
 
 # Create user
-adduser --system --no-create-home avisa
+adduser --no-create-home avisa
 groupadd avista
 groupadd docker
 usermod -aG docker avista
 usermod -aG avista avista
-usermod -aG docker pi
 systemctl restart docker
 
 # Create install directory
