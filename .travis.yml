@@ -1,27 +1,32 @@
 language: python
 dist: xenial
 python:
-  - 3.4
-  - 3.5
-  - 3.6
   - 3.7
   - 3.8
-services: 
+services:
   - docker
-
 env: []
-
+before_install:
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+  - python --version
+  - pip install -U pip
+  - pip install -q -r requirements.txt
+  - pip install -q -e .
+  - pip install prospector[with_bandit]
+  - pip install coverage
 install:
-  - "pip install -q -r requirements.txt"
-  - "pip install -q -e ."
-  - "pip install prospector[with_bandit]"
-  - "pip install coverage"
+  - cd server
+  - pip install ".[test]" . # install package + test dependencies
 script:
-  - "python setup.py test"
-  - "prospector --tool pylint --tool pep8 --tool dodgy --tool pydocstyle --tool bandit"
-  - "coverage run -m unittest discover"
-  - "coverage report"
-
+  - pytest --cov=avista_iot --cov-fail-under=90
+after_success:
+  - prospector --tool pylint --tool pep8 --tool dodgy --tool pydocstyle --tool bandit
+  - coverage run -m unittest discover
+  - coverage report
+  - cd ..
 deploy:
   provider: script
   script: bash docker_push
