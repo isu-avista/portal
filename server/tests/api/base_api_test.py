@@ -1,16 +1,18 @@
 import os
 import unittest
 from tests.mock_service import MockService
-from avista_data import db
 from pathlib import Path
 from dotenv import load_dotenv
+import avista_data
 
 
 class BaseApiTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        basedir = Path(__file__).parent.absolute() / ".." / ".." / "test-data"
+        while not os.path.isdir("test-data"):
+            os.chdir("..")
+        basedir = Path(os.getcwd()).absolute() / "test-data"
         cls.write_env_file(basedir, "test.env")
         load_dotenv(os.path.join(basedir, 'test.env'))
 
@@ -27,7 +29,7 @@ class BaseApiTest(unittest.TestCase):
         self.client = self.server._app.test_client()
 
     def tearDown(self):
-        db.drop_all()
+        avista_data.database.clear_data()
         self.server.stop()
 
     @staticmethod

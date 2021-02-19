@@ -1,6 +1,7 @@
 import unittest
 from tests.api.base_api_test import BaseApiTest
 from avista_data.device import Device
+from flask import current_app
 
 
 class DataTest(BaseApiTest):
@@ -36,11 +37,12 @@ class DataTest(BaseApiTest):
             ]
         )
         self.client.post('/api/data', json=data)
-        self.assertEqual(1, Device.query.count())
-        dev = Device.query.get(1)
+        self.assertEqual(1, current_app.session.query(Device).count())
+        dev = current_app.session.query(Device).get(1)
         self.assertEqual(1, dev.sensors.count())
         for s in dev.sensors:
             self.assertEqual(2, s.data.count())
 
-    if __name__ == '__main__':
-        unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
