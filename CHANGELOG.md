@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [v0.1.4](https://github.com/isu-avista/portal/releases/tag/v0.1.4) - 2021-02-19
+### Added
+
+### Changed
+* Updated the system to work with the latest changes to base-server and data modules
+
+### Removed
+
 ## [v0.1.3](https://github.com/isu-avista/portal/releases/tag/v0.1.3) - 2021-02-16
 ### Added
 

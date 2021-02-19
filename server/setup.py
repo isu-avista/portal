@@ -6,7 +6,7 @@ import setuptools
 
 setuptools.setup(
     name="avista-portal",
-    version="0.1.3",
+    version="0.1.4",
     author="Isaac Griffith",
     author_email="grifisaa@isu.edu",
     description="",
