@@ -1,43 +1,42 @@
 from avista_portal.api import api_bp as bp
-from flask import request, jsonify
-from threading import Thread
-from avista_data import db
-from avista_data import current_app as app
+from flask import request, jsonify, current_app
 from avista_data.device import Device
 from avista_data.sensor import Sensor
 from avista_data.data_point import DataPoint
 
 
 def find_or_create_device(json):
-    device = Device.query.filter_by(name=json.get("name")).first()
+    device = current_app.session.query(Device).filter_by(name=json.get("name")).first()
     if not device:
         device = Device(json)
-        db.session.add(device)
-        db.session.commit()
+        current_app.session.add(device)
+        current_app.session.commit()
     return device
 
 
 def find_or_create_sensor(json, device):
-    sensor = Sensor.query.filter_by(name=json.get("name")).first()
+    sensor = current_app.session.query(Sensor).filter_by(name=json.get("name")).first()
     if not sensor:
         sensor = Sensor(json)
-        db.session.add(sensor)
-        db.session.commit()
+        current_app.session.add(sensor)
+        current_app.session.commit()
     if sensor not in device.sensors:
         device.add_sensor(sensor)
+        current_app.session.commit()
 
     return sensor
 
 
 def create_point(json, sensor):
     point = DataPoint(json)
-    db.session.add(point)
-    db.session.commit()
+    current_app.session.add(point)
+    current_app.session.commit()
     sensor.add_data_point(point)
+    current_app.session.commit()
 
 
 def process_data_async(json):
-    with app.app_context():
+    with current_app.app_context():
         device = find_or_create_device(json['device'])
         data = json['data']
         for item in data:
