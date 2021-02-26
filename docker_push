@@ -3,7 +3,8 @@
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 cd server
-docker build \
+docker buildx build \
+       --platform linux/arm/v7 \
        --build-arg dbtype=postgres \
        --build-arg dbname=avistadb \
        --build-arg dbuser=avista \
@@ -16,5 +17,5 @@ docker build \
 docker push isuese/avista-portal-server:latest
 
 # cd ../client
-# docker build -t isuese/avista-portal-client:latest .
+# docker buildx build --platform linux/arm/v7 -t isuese/avista-portal-client:latest .
 # docker push isuese/avista-portal-client:latest
