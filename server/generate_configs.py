@@ -1,6 +1,7 @@
 import uuid
 import yaml
 import argparse
+import os
 
 
 def init_argparse() -> argparse.ArgumentParser:
@@ -20,6 +21,11 @@ def init_argparse() -> argparse.ArgumentParser:
     parser.add_argument("-v", "--version", action="version", version=f'{parser.prog} version 1.0.0')
 
     return parser
+
+def generate_logs_directory():
+    if not os.path.is_dir('logs'):
+        os.mkdir('logs')
+        open('logs/server.log', 'w').close()
 
 
 def generate_flask_config():
@@ -122,6 +128,7 @@ def main() -> None:
 
     generate_server_config(dbtype, dbname, dbip, dbport, dbuser, dbpass, host, port)
     generate_flask_config()
+    generate_logs_directory()
 
 
 if __name__ == '__main__':
