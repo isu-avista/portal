@@ -23,7 +23,7 @@ def init_argparse() -> argparse.ArgumentParser:
     return parser
 
 def generate_logs_directory():
-    if not os.path.is_dir('logs'):
+    if not os.path.isdir('logs'):
         os.mkdir('logs')
         open('logs/server.log', 'w').close()
 
