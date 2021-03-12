@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [v0.1.5](https://github.com/isu-avista/portal/releases/tag/v0.1.5) - 2021-03-12
+### Added
+* Added  `qemu-static-user` package installation to travis.yml to build for arm architecture
+* Added a method to `generate_configs.py` that will create the logs directory and log file if they don't exist
+* Added pip installation to `install.sh` as it is needed to install docker-compose
+
+### Changed
+* Updated `docker_push` script to use buildx to build image for arm architecture
+
+### Removed
+
 ## [v0.1.4](https://github.com/isu-avista/portal/releases/tag/v0.1.4) - 2021-02-19
 ### Added
 

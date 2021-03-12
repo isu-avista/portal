@@ -27,6 +27,7 @@ done
 command_exists "python3"
 if [[ $? -ne 0 ]]; then
     apt-get install python3 -y
+    apt-get install python3-pip -y
 fi
 
 command_exists "curl"
