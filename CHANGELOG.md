@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [v0.1.6](https://github.com/isu-avista/portal/releases/tag/v0.1.6) - 2021-03-12
+### Added
+
+### Changed
+* Changed the Exec location in avista.service from /usr/bin/docker-compose to /usr/local/bin/docker-compose
+* Changed install.sh to properly check for and install pip
+
+### Removed
+
 ## [v0.1.5](https://github.com/isu-avista/portal/releases/tag/v0.1.5) - 2021-03-12
 ### Added
 * Added  `qemu-static-user` package installation to travis.yml to build for arm architecture

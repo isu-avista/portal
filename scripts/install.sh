@@ -26,8 +26,13 @@ done
 # Install python3 if not already installed
 command_exists "python3"
 if [[ $? -ne 0 ]]; then
-    apt-get install python3 -y
-    apt-get install python3-pip -y
+  apt-get install python3 -y
+fi
+
+# Install pip if not already installed
+command_exists "python3 -m pip"
+if [[ $? -ne 0 ]]; then
+  apt-get install python3-pip -y
 fi
 
 command_exists "curl"
@@ -38,20 +43,20 @@ fi
 # Install docker if not already installed
 command_exists "docker"
 if [[ $? -ne 0 ]]; then
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sh get-docker.sh
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sh get-docker.sh
 fi
 
 # Install docker-compose if not already installed
 command_exists "docker-compose"
 if [[ $? -ne 0 ]]; then
-    python3 -m pip install docker-compose
+  python3 -m pip install docker-compose
 fi
 
 # Install postgres if not already installed
 command_exists "psql"
 if [[ $? -ne 0 ]]; then
-    apt-get install postgresql libpq-dev postgresql-client postgresql-client-common -y
+  apt-get install postgresql libpq-dev postgresql-client postgresql-client-common -y
 fi
 
 # Generate and execute the database setup script

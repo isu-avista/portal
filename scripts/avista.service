@@ -6,8 +6,8 @@ After=network.target docker.service
 [Service]
 Type=oneshot
 RemainAfterExit=true
-ExecStart=/usr/bin/docker-compose -f /opt/avista/avista.yml up -d --remove-orphans
-ExecStop=/usr/bin/docker-compose -f /opt/avista/avista.yml down -v
+ExecStart=/usr/local/bin/docker-compose -f /opt/avista/avista.yml up -d --remove-orphans
+ExecStop=/usr/local/bin/docker-compose -f /opt/avista/avista.yml down -v
 WorkingDirectory=/opt/avista
 User=avista
 
