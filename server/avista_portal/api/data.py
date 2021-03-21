@@ -64,9 +64,6 @@ def add_data():
 def add_prediction_data():
     if request.is_json:
         post_data = request.get_json()
-        issue = Issue(post_data)
-        current_app.session.add(issue)
-        current_app.session.commit()
         return jsonify({'status': 'success'})
     return jsonify({'status': 'failure'})
 
