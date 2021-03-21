@@ -3,6 +3,7 @@ from flask import request, jsonify, current_app
 from avista_data.device import Device
 from avista_data.sensor import Sensor
 from avista_data.data_point import DataPoint
+from avista_data.issue import Issue
 
 
 def find_or_create_device(json):
@@ -58,3 +59,27 @@ def add_data():
     # preferably we will do this in a separate process, so we are not holding up the route
     # Thread(target=process_data_async, args=(post_data)).start()
 
+
+@bp.route('/api/ml-data', methods=['POST'])
+def add_prediction_data():
+    if request.is_json:
+        post_data = request.get_json()
+        issue = Issue(post_data)
+        current_app.session.add(issue)
+        current_app.session.commit()
+        return jsonify({'status': 'success'})
+    return jsonify({'status': 'failure'})
+
+
+@bp.route('/api/data/<since>', methods=['GET'])
+def get_data_since(since):
+    if request.is_json:
+        data = []
+        points = current_app.session.query(DataPoint)\
+            .filter(DataPoint.timestamp >= since).order_by(DataPoint.timestamp).all()
+        for point in points:
+            device = current_app.session.query(Device)\
+                .filter_by(sensor_id=point.sensor_id).first()
+            data.append([point.get_timestamp(), point.get_value(), device.id])
+        return jsonify(data)
+    return jsonify({'status': 'failure'})
