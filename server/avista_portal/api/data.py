@@ -75,8 +75,7 @@ def get_data_since(since):
         points = current_app.session.query(DataPoint)\
             .filter(DataPoint.timestamp >= since).order_by(DataPoint.timestamp).all()
         for point in points:
-            device = current_app.session.query(Device)\
-                .filter_by(sensor_id=point.sensor_id).first()
-            data.append([point.get_timestamp(), point.get_value(), device.id])
+            sensor = current_app.session.query(Sensor).filter_by(id=point.sensor_id).first()
+            data.append([point.get_timestamp(), point.get_value(), sensor.device_id])
         return jsonify(data)
     return jsonify({'status': 'failure'})
