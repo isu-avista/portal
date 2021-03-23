@@ -70,12 +70,12 @@ def add_prediction_data():
 
 @bp.route('/api/data/<since>', methods=['GET'])
 def get_data_since(since):
-    if request.is_json:
-        data = []
-        points = current_app.session.query(DataPoint)\
-            .filter(DataPoint.timestamp >= since).order_by(DataPoint.timestamp).all()
-        for point in points:
-            sensor = current_app.session.query(Sensor).filter_by(id=point.sensor_id).first()
-            data.append([point.get_timestamp(), point.get_value(), sensor.device_id])
-        return jsonify(data)
-    return jsonify({'status': 'failure'})
+    data = []
+    points = current_app.session.query(DataPoint) \
+        .filter(DataPoint.timestamp >= since).order_by(DataPoint.timestamp).all()
+
+    for point in points:
+        sensor = current_app.session.query(Sensor).filter_by(id=point.sensor_id).first()
+        data.append([point.get_timestamp(), point.get_value(), sensor.device_id])
+
+    return jsonify(data)
