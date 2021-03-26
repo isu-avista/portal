@@ -64,9 +64,9 @@ def add_data():
 @bp.route('/api/ml-data', methods=['POST'])
 def add_prediction_data():
     if request.is_json:
-        predictions = request.get_json()
-        for prediction in predictions:
-            if prediction['type'] != 0:
+        response = request.get_json()
+        for prediction in response['predictions']:
+            if prediction['value'] != 0:
                 issue = Issue(prediction)
                 current_app.session.add(issue)
                 current_app.session.commit()
