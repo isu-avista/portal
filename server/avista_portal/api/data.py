@@ -4,6 +4,7 @@ from avista_data.device import Device
 from avista_data.sensor import Sensor
 from avista_data.data_point import DataPoint
 from avista_data.issue import Issue
+from avista_data.issue_type import IssueType
 
 
 def find_or_create_device(json):
@@ -63,7 +64,12 @@ def add_data():
 @bp.route('/api/ml-data', methods=['POST'])
 def add_prediction_data():
     if request.is_json:
-        post_data = request.get_json()
+        predictions = request.get_json()
+        for prediction in predictions:
+            if prediction['type'] != 0:
+                issue = Issue(prediction)
+                current_app.session.add(issue)
+                current_app.session.commit()
         return jsonify({'status': 'success'})
     return jsonify({'status': 'failure'})
 
