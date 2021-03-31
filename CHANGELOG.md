@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [v0.1.7](https://github.com/isu-avista/portal/releases/tag/v0.1.7) - 2021-03-31
+### Added
+* Added a route to allow the control module to POST predicted issues
+* Added a route to allow the control module to GET data since a certain timestamp
+
+### Changed
+
+### Removed
+
 ## [v0.1.6](https://github.com/isu-avista/portal/releases/tag/v0.1.6) - 2021-03-12
 ### Added
 
